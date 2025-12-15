@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên Kết Trang Cá Nhân Của Khoa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg-dark:#000;
+    --text-white:#fff;
+    --font-main:'Montserrat',sans-serif;
+    --min-margin:7px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:var(--font-main);
+    background:var(--bg-dark);
+    color:var(--text-white);
+    overflow:hidden;
+}
+
+/* ===== Full screen ===== */
+.full-screen-container{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:0 var(--min-margin);
+}
+
+.full-screen-video{
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+.animated-text{
+    font-weight:900;
+    text-align:center;
+    z-index:2;
+}
+
+/* ===== Splash ===== */
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.1)}
+    100%{transform:scale(1)}
+}
+
+#splash-screen{
+    z-index:9999;
+    backdrop-filter:blur(3px);
+    transition:opacity 0.6s ease;
+}
+
+#splash-screen h2{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+#splash-screen p{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+#splash-button,
+.next-text{
+    animation:pulse 1.5s infinite;
+    transition:0.3s;
+}
+
+#splash-button{
+    padding:12px 30px;
+    font-size:1.5rem;
+    background:none;
+    border:2px solid rgba(255,255,255,0.7);
+    border-radius:40px;
+    color:#fff;
+    cursor:pointer;
+}
+
+#splash-button:hover,
+.next-text:hover{
+    animation:none;
+    transform:scale(1.07);
+}
+
+#splash-button:active,
+.next-text:active{
+    transform:scale(0.88);
+}
+
+.next-text{
+    padding:2px 8px;
+    border-radius:20px;
+    border:2px solid rgba(255,255,255,0.7);
+}
+
+/* ===== Main content ===== */
+#main-content{
+    display:none;
+    opacity:0;
+    transition:opacity 0.6s ease;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    z-index:999;
+}
+
+#main-content h1{
+    font-size:1.2rem;
+    margin-top:5vh;
+    margin-bottom:20px;
+}
+
+.social-icons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.social-icons a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    max-width:280px;
+    padding:10px 16px;
+    border-radius:35px;
+    text-decoration:none;
+    color:#fff;
+    font-weight:900;
+    transition:0.3s;
+}
+
+.social-icons a:hover{transform:scale(1.07)}
+.social-icons a:active{transform:scale(0.88)}
+
+.social-icons img{
+    width:30px;
+    height:30px;
+    margin-right:10px;
+}
+
+/* ===== Snow ===== */
+#snow-canvas{
+    position:fixed;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* ===== Mobile ===== */
+@media(max-width:480px){
+    #splash-screen h2{font-size:1.5rem}
+    #main-content h1{font-size:1rem}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Splash -->
+<div id="splash-screen" class="full-screen-container">
+    <video class="full-screen-video" autoplay muted loop playsinline>
+        <source src="splash_next.mp4" type="video/mp4">
+    </video>
+
+    <h2 class="animated-text">Xin chào!</h2>
+    <p class="animated-text">
+        Nhấn <span class="next-text">Next</span> để xem thông tin của tôi nhé!
+    </p>
+    <button id="splash-button" class="animated-text">Next</button>
+</div>
+
+<!-- Main -->
+<div id="main-content">
+    <video class="full-screen-video" autoplay muted loop playsinline>
+        <source src="main_background.mp4" type="video/mp4">
+    </video>
+
+    <canvas id="snow-canvas"></canvas>
+
+    <h1 class="animated-text">Liên Kết Trang Cá Nhân Của Tôi</h1>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/khoa392009" target="_blank">
+            <img src="Facebook_icon.svg.png">Facebook
+        </a>
+        <a href="https://www.tiktok.com/@khoaxinhtrai209" target="_blank">
+            <img src="TikTok.svg.png">TikTok
+        </a>
+        <a href="https://zalo.me/0704602029" target="_blank">
+            <img src="Zalo.svg.png">Zalo
+        </a>
+        <a href="https://www.instagram.com/khoane39209/" target="_blank">
+            <img src="Instagram.svg.png">Instagram
+        </a>
+        <a href="https://www.threads.com/@khoane39209" target="_blank">
+            <img src="Threads.svg.png">Threads
+        </a>
+        <a href="https://locket.cam/khoa39" target="_blank">
+            <img src="locket.png">Locket
+        </a>
+    </div>
+</div>
+
+<audio id="music-main" src="golden.hours.mp3" loop></audio>
+
+<script>
+const splash=document.getElementById("splash-screen");
+const main=document.getElementById("main-content");
+const btn=document.getElementById("splash-button");
+const music=document.getElementById("music-main");
+const canvas=document.getElementById("snow-canvas");
+
+btn.onclick=()=>{
+    splash.style.opacity=0;
+    setTimeout(()=>{
+        splash.style.display="none";
+        main.style.display="flex";
+        setTimeout(()=>main.style.opacity=1,50);
+
+        music.volume=1.0;
+        music.play().catch(()=>{});
+
+        snow();
+    },600);
+};
+
+function snow(){
+    const ctx=canvas.getContext("2d");
+    canvas.width=innerWidth;
+    canvas.height=innerHeight;
+
+    const p=[...Array(150)].map(()=>({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*2+1,
+        sx:Math.random()*0.3+0.1,
+        sy:Math.random()*0.3+0.1
+    }));
+
+    function draw(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        p.forEach(o=>{
+            o.x-=o.sx;
+            o.y-=o.sy;
+            if(o.x<0)o.x=canvas.width;
+            if(o.y<0)o.y=canvas.height;
+            ctx.beginPath();
+            ctx.arc(o.x,o.y,o.r,0,Math.PI*2);
+            ctx.fillStyle="rgba(255,255,255,0.6)";
+            ctx.fill();
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+</script>
+
+</body>
+</html>
